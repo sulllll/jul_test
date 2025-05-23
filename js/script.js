@@ -9,24 +9,24 @@ const resultText = document.getElementById('result-text');
 const communityLinkContainer = document.getElementById('community-link-container');
 const communityLink = document.getElementById('community-link');
 
-// MBTI Community Links Data (Updated to point to local HTML files)
+// MBTI Community Links Data (Updated to point to local HTML files in pages/ directory)
 const mbtiCommunityLinks = {
-  ISTJ: "istj.html",
-  ISFJ: "isfj.html",
-  INFJ: "infj.html",
-  INTJ: "intj.html",
-  ISTP: "istp.html",
-  ISFP: "isfp.html",
-  INFP: "infp.html",
-  INTP: "intp.html",
-  ESTP: "estp.html",
-  ESFP: "esfp.html",
-  ENFP: "enfp.html",
-  ENTP: "entp.html",
-  ESTJ: "estj.html",
-  ESFJ: "esfj.html",
-  ENFJ: "enfj.html",
-  ENTJ: "entj.html",
+  ISTJ: "pages/istj.html",
+  ISFJ: "pages/isfj.html",
+  INFJ: "pages/infj.html",
+  INTJ: "pages/intj.html",
+  ISTP: "pages/istp.html",
+  ISFP: "pages/isfp.html",
+  INFP: "pages/infp.html",
+  INTP: "pages/intp.html",
+  ESTP: "pages/estp.html",
+  ESFP: "pages/esfp.html",
+  ENFP: "pages/enfp.html",
+  ENTP: "pages/entp.html",
+  ESTJ: "pages/estj.html",
+  ESFJ: "pages/esfj.html",
+  ENFJ: "pages/enfj.html",
+  ENTJ: "pages/entj.html",
 };
 
 // State Variables
