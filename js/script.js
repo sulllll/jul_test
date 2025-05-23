@@ -8,6 +8,18 @@ const optionsContainer = document.getElementById('options-container');
 const resultText = document.getElementById('result-text');
 const communityLinkContainer = document.getElementById('community-link-container');
 const communityLink = document.getElementById('community-link');
+const progressBar = document.getElementById('progress-bar');
+const questionNumber = document.getElementById('question-number');
+// const nextBtn = document.getElementById('next-btn'); // For later use if manual navigation is enabled
+
+// New Answer Options (Fixed)
+const answerOptions = [
+  { id: 1, text: '매우 그렇다', value: 2 },
+  { id: 2, text: '그렇다', value: 1 },
+  { id: 3, text: '보통이다', value: 0 },
+  { id: 4, text: '아니다', value: -1 },
+  { id: 5, text: '매우 아니다', value: -2 }
+];
 
 // MBTI Community Links Data (Updated to point to local HTML files in pages/ directory)
 const mbtiCommunityLinks = {
@@ -31,97 +43,24 @@ const mbtiCommunityLinks = {
 
 // State Variables
 let currentQuestionIndex = 0;
-let scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+let scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 }; // Keep this structure
+
+// New Question Data Structure
 let questions = [
-  // EI Questions
-  {
-    text: "당신은 주로:",
-    options: [
-      { text: "다양한 사람들과 교류하며 에너지를 얻는다 (E)", type: "E" },
-      { text: "혼자만의 시간을 통해 에너지를 충전한다 (I)", type: "I" },
-    ],
-  },
-  {
-    text: "새로운 사람들을 만나는 것에 대해:",
-    options: [
-      { text: "쉽게 다가가고 대화를 시작하는 편이다 (E)", type: "E" },
-      { text: "시간이 필요하며, 먼저 다가오기를 기다리는 편이다 (I)", type: "I" },
-    ],
-  },
-  {
-    text: "주말을 보낼 때 선호하는 방식은:",
-    options: [
-      { text: "친구들과의 약속이나 활동적인 모임 (E)", type: "E" },
-      { text: "집에서 조용히 쉬거나 개인적인 취미 활동 (I)", type: "I" },
-    ],
-  },
-  // SN Questions
-  {
-    text: "정보를 받아들일 때 당신은:",
-    options: [
-      { text: "현재 실제로 일어나고 있는 일에 더 집중한다 (S)", type: "S" },
-      { text: "미래의 가능성이나 숨겨진 의미를 더 탐구한다 (N)", type: "N" },
-    ],
-  },
-  {
-    text: "일을 처리할 때:",
-    options: [
-      { text: "구체적이고 현실적인 방법을 선호한다 (S)", type: "S" },
-      { text: "새롭고 독창적인 아이디어를 떠올리는 것을 즐긴다 (N)", type: "N" },
-    ],
-  },
-  {
-    text: "설명을 들을 때:",
-    options: [
-      { text: "사실적이고 명확한 설명을 더 이해하기 쉽다 (S)", type: "S" },
-      { text: "비유적이거나 개념적인 설명을 더 흥미롭게 느낀다 (N)", type: "N" },
-    ],
-  },
-  // TF Questions
-  {
-    text: "결정을 내릴 때 주로 고려하는 것은:",
-    options: [
-      { text: "논리적이고 객관적인 분석 (T)", type: "T" },
-      { text: "사람들과의 관계나 감정적인 영향 (F)", type: "F" },
-    ],
-  },
-  {
-    text: "다른 사람에게 피드백을 줄 때:",
-    options: [
-      { text: "진실하고 솔직하게 전달하는 것이 중요하다고 생각한다 (T)", type: "T" },
-      { text: "상대방의 감정을 고려하여 부드럽게 전달하려고 노력한다 (F)", type: "F" },
-    ],
-  },
-  {
-    text: "문제 해결 시 당신의 접근 방식은:",
-    options: [
-      { text: "원칙과 기준에 따라 공정하게 해결하려 한다 (T)", type: "T" },
-      { text: "상황과 관련된 사람들의 감정을 중요하게 생각한다 (F)", type: "F" },
-    ],
-  },
-  // JP Questions
-  {
-    text: "계획을 세울 때:",
-    options: [
-      { text: "미리 계획을 세우고 일정을 따르는 것을 선호한다 (J)", type: "J" },
-      { text: "상황에 따라 유연하게 대처하고 즉흥적인 것을 즐긴다 (P)", type: "P" },
-    ],
-  },
-  {
-    text: "일상 생활에서 당신은:",
-    options: [
-      { text: "정리정돈되고 체계적인 환경을 중요하게 생각한다 (J)", type: "J" },
-      { text: "자유롭고 편안한 환경에서 더 능률이 오른다고 느낀다 (P)", type: "P" },
-    ],
-  },
-  {
-    text: "마감 기한이 있는 일을 할 때:",
-    options: [
-      { text: "미리 시작하여 여유롭게 끝내는 편이다 (J)", type: "J" },
-      { text: "마감 직전에 집중해서 끝내는 경향이 있다 (P)", type: "P" },
-    ],
-  },
+    { id: 1, dimension: 'EI', text: '다른 사람들과 어울리면서 에너지를 얻는 편이다.', weight: 1 }, // E-aligned
+    { id: 2, dimension: 'EI', text: '혼자만의 시간을 보내며 재충전하는 것을 선호한다.', weight: -1 }, // I-aligned
+    { id: 3, dimension: 'SN', text: '새로운 아이디어나 이론보다는 실제 경험과 사실에 더 집중한다.', weight: 1 }, // S-aligned
+    { id: 4, dimension: 'SN', text: '미래의 가능성을 상상하고 비유적인 것에 관심이 많다.', weight: -1 }, // N-aligned
+    { id: 5, dimension: 'TF', text: '결정을 내릴 때 논리적 분석과 객관적 사실을 중요하게 생각한다.', weight: 1 }, // T-aligned
+    { id: 6, dimension: 'TF', text: '결정을 내릴 때 사람들과의 관계나 감정을 우선적으로 고려한다.', weight: -1 }, // F-aligned
+    { id: 7, dimension: 'JP', text: '계획을 세우고 체계적으로 일을 진행하는 것을 좋아한다.', weight: 1 }, // J-aligned
+    { id: 8, dimension: 'JP', text: '상황에 따라 유연하게 대처하고 즉흥적인 것을 즐긴다.', weight: -1 }, // P-aligned
+    { id: 9, dimension: 'EI', text: '파티나 모임에서 중심에 서는 것을 즐긴다.', weight: 1 }, // E-aligned
+    { id: 10, dimension: 'SN', text: '구체적인 세부사항을 기억하고 잘 다루는 편이다.', weight: 1 }, // S-aligned
+    { id: 11, dimension: 'TF', text: '다른 사람의 감정에 깊이 공감하고 위로를 잘 건넨다.', weight: -1 }, // F-aligned
+    { id: 12, dimension: 'JP', text: '마감 기한이 다가올 때까지 일을 미루는 경향이 있다.', weight: -1 } // P-aligned
 ];
+
 
 // Event Listener
 startBtn.addEventListener('click', startTest);
@@ -129,25 +68,24 @@ startBtn.addEventListener('click', startTest);
 // Functions
 function startTest() {
     currentQuestionIndex = 0;
-    scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+    scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 }; // Reset scores
 
-    // Animate out welcome screen
-    welcomeScreen.style.opacity = '0';
-    welcomeScreen.style.transform = 'translateY(20px)';
+    // Animate out hero screen (formerly welcomeScreen)
+    const heroScreen = document.getElementById('hero'); // Get hero screen
+    heroScreen.style.opacity = '0';
+    heroScreen.style.transform = 'translateY(20px)';
 
     setTimeout(() => {
-        welcomeScreen.style.display = 'none';
+        heroScreen.style.display = 'none';
 
         // Prepare question screen for animation
-        questionScreen.style.display = 'flex'; // Changed from 'block' to 'flex'
-        // Force reflow to ensure transition is applied
-        void questionScreen.offsetHeight; // Using void for clarity on non-assignment
+        questionScreen.style.display = 'flex'; 
+        void questionScreen.offsetHeight; 
 
-        // Animate in question screen
         questionScreen.style.opacity = '1';
         questionScreen.style.transform = 'translateY(0)';
         displayQuestion();
-    }, 500); // Corresponds to CSS transition duration
+    }, 500); 
 }
 
 function displayQuestion() {
@@ -157,20 +95,40 @@ function displayQuestion() {
         const currentQuestion = questions[currentQuestionIndex];
         questionText.textContent = currentQuestion.text;
 
-        currentQuestion.options.forEach(option => {
+        // Update progress bar and question number
+        const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+        progressBar.style.width = progress + '%';
+        questionNumber.textContent = `질문 ${currentQuestionIndex + 1}/${questions.length}`;
+
+        answerOptions.forEach(option => {
             const button = document.createElement('button');
             button.textContent = option.text;
-            button.addEventListener('click', () => selectAnswer(option.type));
+            // Add base .btn class and a specific class for answer options if needed
+            button.className = 'btn'; // Apply base button styling
+            // Add any other specific classes for answer options here if needed
+            button.addEventListener('click', () => selectAnswer(option.value, currentQuestion.dimension, currentQuestion.weight));
             optionsContainer.appendChild(button);
         });
     } else {
-        // All questions answered, proceed to calculate and show result
         calculateAndShowResult();
     }
 }
 
-function selectAnswer(type) {
-    scores[type]++;
+// Modified selectAnswer function
+function selectAnswer(selectedValue, dimension, questionWeight) {
+    const firstType = dimension[0];  // E.g., 'E' from 'EI'
+    const secondType = dimension[1]; // E.g., 'I' from 'EI'
+
+    if (questionWeight === 1) { // Question is aligned with the firstType (e.g., E, S, T, J)
+        scores[firstType] += selectedValue;
+    } else { // questionWeight === -1, question is aligned with the secondType (e.g., I, N, F, P)
+        scores[secondType] += selectedValue; 
+        // Alternative for weight -1: scores[firstType] -= selectedValue; 
+        // If using this alternative, the calculateResult logic might need adjustment
+        // to sum scores if they can be negative.
+        // For now, sticking to adding positive values to the aligned type.
+    }
+
     currentQuestionIndex++;
     displayQuestion();
 }
@@ -179,10 +137,15 @@ function selectAnswer(type) {
 function calculateAndShowResult() {
     // Calculate MBTI result string
     let mbtiResult = '';
-    mbtiResult += scores.E >= scores.I ? 'E' : 'I';
-    mbtiResult += scores.S >= scores.N ? 'S' : 'N';
-    mbtiResult += scores.T >= scores.F ? 'T' : 'F';
-    mbtiResult += scores.J >= scores.P ? 'P' : 'J';
+    // For each dimension, if score for firstType > score for secondType, add firstType, else secondType
+    // This assumes scores are accumulated such that a higher score means preference for that type.
+    // With the current selectAnswer, a positive value for an E-leaning question adds to E.
+    // A positive value for an I-leaning question adds to I.
+    // So, we directly compare scores.E with scores.I.
+    mbtiResult += scores.E > scores.I ? 'E' : 'I'; // If E == I, defaults to I. Adjust if specific tie-breaking needed.
+    mbtiResult += scores.S > scores.N ? 'S' : 'N';
+    mbtiResult += scores.T > scores.F ? 'T' : 'F';
+    mbtiResult += scores.J > scores.P ? 'J' : 'P';
 
     // Animate out question screen
     questionScreen.style.opacity = '0';

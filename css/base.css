@@ -694,3 +694,161 @@ a:hover {
 #personality-preview {
     background-color: var(--neutral-gray-100); /* Specific bg for this section */
 }
+
+/* Comment Section Styles */
+.comment-section-container {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--container-border); /* Mapped from --border-color */
+    /* Optional: background-color: var(--neutral-gray-50); /* Mapped from --bg-gray */
+    /* Optional: padding: var(--spacing-lg); */
+    /* Optional: border-radius: var(--border-radius-md); /* Mapped from --radius-md */
+}
+
+/* .comment-section-container h3, .comment-section-container h4 
+   are expected to be styled sufficiently by global h3, h4 rules.
+   Base.css applies:
+   h3 { font-size: var(--font-size-xl); }
+   h4 { font-family: var(--font-family-heading); font-weight: var(--font-weight-bold); line-height: var(--line-height-tight); color: var(--text-primary); margin-bottom: var(--spacing-md); text-align: center; }
+   (Note: h4 was not explicitly defined in the base.css from turn 138, so it would inherit or be default. Adding a basic h4 style here for completeness if needed, or assume it's like h3)
+*/
+.comment-section-container h4 { /* Style for "댓글 목록" heading if needed */
+    font-size: var(--font-size-lg); /* Example size */
+    margin-top: var(--spacing-xl); /* Space above "댓글 목록" */
+    padding-top: var(--spacing-lg); /* Space if border is added */
+    border-top: 1px solid var(--container-border); /* Separator for comment list */
+}
+
+
+#comment-input {
+    width: 100%;
+    min-height: 80px;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--container-border); /* Mapped from --border-color */
+    border-radius: var(--border-radius-md); /* Mapped from --radius-md */
+    margin-bottom: var(--spacing-sm);
+    font: var(--font-size-base) / var(--line-height-normal) var(--font-family-base); /* Mapped from --font-body */
+    color: var(--text-primary);
+    background-color: var(--neutral-white); /* Mapped from --bg-white */
+    box-sizing: border-box;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Mapped from --transition-fast */
+}
+
+#comment-input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); /* Using primary-blue for shadow consistency */
+}
+
+#comment-submit-btn {
+    margin-bottom: var(--spacing-xl); /* Increased margin */
+    /* Base .btn and .btn-primary styles will apply from base.css */
+}
+
+.comments-list-area {
+    margin-top: var(--spacing-md);
+}
+
+.comments-list-area .placeholder-text { /* For "아직 댓글이 없습니다." */
+    font-size: var(--font-size-sm); /* Mapped from --font-body-small */
+    color: var(--text-placeholder);   /* Mapped from --text-tertiary */
+    text-align: center; /* Center placeholder text */
+}
+
+.comment-item {
+    background-color: var(--neutral-gray-50); /* Mapped from --bg-gray */
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md); /* Mapped from --radius-md */
+    margin-bottom: var(--spacing-md);
+    border: 1px solid var(--container-border); /* Mapped from --border-color */
+}
+
+.comment-item p { /* Text of the comment */
+    font-size: var(--font-size-base); /* Mapped from --font-body */
+    line-height: var(--line-height-normal);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-xs);
+    max-width: none;
+    text-align: left;
+    margin-left: 0; 
+    margin-right: 0;
+}
+
+.comment-item .comment-timestamp {
+    font-size: var(--font-size-xs); /* Mapped from --font-caption, adjusted to be smaller */
+    line-height: var(--line-height-normal);
+    color: var(--text-placeholder); /* Mapped from --text-tertiary */
+    display: block;
+    margin-top: var(--spacing-sm);
+    text-align: right;
+}
+
+/* Styles for Question Screen UI Elements */
+#progress-bar-container {
+    width: 100%;
+    background-color: var(--neutral-gray-200); /* Light gray for the track */
+    border-radius: var(--border-radius-md);   /* Consistent border radius */
+    margin-bottom: var(--spacing-md);         /* Space below progress bar */
+    overflow: hidden; /* Ensures the inner bar's radius is neat */
+}
+
+#progress-bar {
+    width: 0%; /* Initial width, will be updated by JS */
+    height: 12px; /* Slightly thicker bar */
+    background-color: var(--primary-purple); /* Use primary color */
+    border-radius: var(--border-radius-md);   /* Consistent border radius */
+    transition: width 0.3s ease-in-out;     /* Smooth progress animation */
+}
+
+#question-number {
+    font-size: var(--font-size-sm);      /* Small text for question number */
+    color: var(--text-placeholder);      /* Softer color */
+    margin-bottom: var(--spacing-lg);    /* Space before the question text */
+    text-align: center;
+}
+
+/* #question-text is already styled:
+   font-size: var(--font-size-xl);
+   font-weight: var(--font-weight-semibold);
+   color: var(--text-primary);
+   margin-bottom: var(--spacing-xl); 
+   text-align: center; 
+*/
+
+/* #options-container already styled:
+   display: flex;
+   flex-direction: column;
+   gap: var(--spacing-md);
+   width: 100%;
+   margin-top: var(--spacing-lg);
+*/
+
+/* Buttons within #options-container are styled by .btn and specific theme classes 
+   (e.g., .btn-accent-green by default in previous setup, but now just .btn)
+   The JS in Turn 144 applies 'btn' class: button.className = 'btn';
+   This will give them --button-primary-bg (purple) by default.
+   If a different default color is needed for options:
+*/
+#options-container .btn {
+    /* background-color: var(--accent-green); /* Example: to make them green */
+    /* color: var(--text-on-accent-bg); */
+    /* width: 100%; /* Already applied by #options-container button rule in previous base.css */
+}
+/* #options-container .btn:hover { */
+    /* background-color: #0e8c68; /* Darker green */
+/* } */
+
+
+#navigation-buttons {
+    margin-top: var(--spacing-xl); /* Space above navigation buttons */
+    width: 100%;
+    text-align: center; /* Center buttons like "Next" if they are inline-block */
+    display: flex; /* Use flex for easier spacing if multiple buttons */
+    justify-content: center; /* Center button(s) */
+    gap: var(--spacing-md);
+}
+
+#next-btn, #prev-btn { /* General styling for nav buttons */
+    /* display: none; /* JS will control display */
+    /* .btn and .btn-primary or .btn-secondary classes from HTML are applied */
+}

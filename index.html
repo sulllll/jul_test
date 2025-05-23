@@ -107,10 +107,20 @@
     </div>
     -->
 
-    <div id="question-screen" style="display: none;"> <!-- This screen remains, initially hidden -->
-        <p id="question-text"></p>
-        <div id="options-container">
-            <!-- Answer buttons will be added here by JavaScript -->
+    <div id="question-screen" class="screen" style="display:none;"> <!-- Ensure .screen class for consistency if used -->
+        <div class="container">
+            <div id="progress-bar-container" style="width: 100%; background-color: var(--neutral-gray-200); border-radius: var(--border-radius-md); margin-bottom: var(--spacing-md);">
+                <div id="progress-bar" style="width: 0%; height: 10px; background-color: var(--primary-purple); border-radius: var(--border-radius-md);"></div>
+            </div>
+            <p id="question-number" style="font-size: var(--font-size-sm); color: var(--text-placeholder); margin-bottom: var(--spacing-lg); text-align:center;">질문 x/y</p>
+            <p id="question-text" style="font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-xl); text-align:center;">Question text here</p>
+            <div id="options-container" style="width:100%;">
+                <!-- 5 options will be dynamically added here -->
+            </div>
+            <div id="navigation-buttons" style="margin-top: var(--spacing-xl); width:100%; text-align:center;">
+                <!-- <button id="prev-btn" class="btn btn-secondary">이전</button> -->
+                <button id="next-btn" class="btn btn-primary" style="display:none;">다음</button> <!-- Initially hidden -->
+            </div>
         </div>
     </div>
 

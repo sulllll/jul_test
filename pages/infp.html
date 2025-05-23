@@ -18,30 +18,21 @@
             <p><strong>추천 직업:</strong> 작가, 예술가, 상담사, 사회복지사, 교육자, 디자이너</p>
             <p><strong>궁합이 좋은 유형:</strong> ENFJ, ENTJ</p>
         </div>
-        <div id="disqus_thread"></div>
-        <script>
-            /**
-            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-            var disqus_config = function () {
-                // Replace PAGE_URL with your page's canonical URL variable
-                this.page.url = window.location.href;
-                // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                this.page.identifier = 'infp_info_page'; // Unique identifier for this page
-            };
+        <div id="comment-section" class="comment-section-container">
+            <h3 style="font: var(--font-h3); color: var(--text-primary); margin-bottom: var(--spacing-md);">댓글 남기기</h3>
+            <textarea id="comment-input" style="width: 100%; min-height: 80px; padding: var(--spacing-sm); border: 1px solid var(--border-color); border-radius: var(--radius-md); margin-bottom: var(--spacing-sm); font: var(--font-body);" placeholder="여기에 댓글을 입력하세요..."></textarea>
+            <button id="comment-submit-btn" class="btn btn-primary" style="margin-bottom: var(--spacing-lg);">댓글 등록</button>
             
-            (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://sulllll.disqus.com/embed.js'; // USES THE PROVIDED SHORTNAME
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            <h4 style="font: var(--font-h3); color: var(--text-primary); margin-bottom: var(--spacing-md); border-top: 1px solid var(--border-color); padding-top: var(--spacing-lg); margin-top: var(--spacing-lg);">댓글 목록</h4>
+            <div id="comments-list" class="comments-list-area">
+                <p class="placeholder-text" style="font: var(--font-body-small); color: var(--text-tertiary);">아직 댓글이 없습니다.</p>
+            </div>
+        </div>
         <a href="../index.html" class="btn-back">테스트로 돌아가기</a>
     </div>
     <script>
       // Optional: if any JS needed for these static pages in future
     </script>
+    <script src="../js/localComments.js"></script>
 </body>
 </html>
