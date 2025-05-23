@@ -8,41 +8,116 @@
     <link rel="stylesheet" href="css/base.css">
 </head>
 <body>
-    <div id="welcome-screen">
-        <h1>MBTI 성격 유형 검사에 오신 것을 환영합니다!</h1>
-        <button id="start-btn">검사 시작</button>
-        <div id="direct-mbti-links" class="direct-links-container" style="margin-top: 30px;">
-            <h2 style="font-family: 'Do Hyeon', sans-serif; color: #ffffff; margin-bottom: 15px; font-size: 1.2em;">MBTI 유형별 정보 바로가기</h2>
-            <a href="pages/infj.html" class="direct-mbti-link">INFJ</a>
-            <a href="pages/intj.html" class="direct-mbti-link">INTJ</a>
-            <a href="pages/infp.html" class="direct-mbti-link">INFP</a>
-            <a href="pages/intp.html" class="direct-mbti-link">INTP</a>
-            <a href="pages/isfj.html" class="direct-mbti-link">ISFJ</a>
-            <a href="pages/istj.html" class="direct-mbti-link">ISTJ</a>
-            <a href="pages/isfp.html" class="direct-mbti-link">ISFP</a>
-            <a href="pages/istp.html" class="direct-mbti-link">ISTP</a>
-            <a href="pages/enfj.html" class="direct-mbti-link">ENFJ</a>
-            <a href="pages/entj.html" class="direct-mbti-link">ENTJ</a>
-            <a href="pages/enfp.html" class="direct-mbti-link">ENFP</a>
-            <a href="pages/entp.html" class="direct-mbti-link">ENTP</a>
-            <a href="pages/esfj.html" class="direct-mbti-link">ESFJ</a>
-            <a href="pages/estj.html" class="direct-mbti-link">ESTJ</a>
-            <a href="pages/esfp.html" class="direct-mbti-link">ESFP</a>
-            <a href="pages/estp.html" class="direct-mbti-link">ESTP</a>
+    <!-- Section_01_Hero -->
+    <section id="hero" class="screen hero-section"> <!-- Replaces #welcome-screen -->
+        <div class="container hero-content">
+            <h1>16가지 성격 유형 중 어느 유형인가요?</h1>
+            <p class="subtitle">우리의 16 성격 유형 테스트는 당신의 성격 유형을 정확하게 파악하고, 자신을 더 깊이 이해하는 데 도움을 줄 수 있도록 과학적으로 설계되었습니다. 지금 바로 시작하여 당신의 잠재력을 발견하세요!</p>
+            <button id="start-btn" class="btn btn-primary btn-accent-orange">테스트 시작</button> <!-- Added btn and btn-primary for base styling, kept btn-accent-orange for specific color -->
+            <!-- Illustration: <img src="path/to/woman-with-bubbles.svg" alt="Woman with thought bubbles"> -->
+            <p class="illustration-placeholder">[일러스트레이션: woman-with-bubbles.svg]</p>
         </div>
-    </div>
+    </section>
 
-    <div id="question-screen" style="display: none;">
+    <!-- Section_02_Personality_Preview -->
+    <section id="personality-preview" class="screen personality-preview-section">
+        <div class="container">
+            <h2>사용자들의 평가를 확인하세요</h2>
+            <div class="preview-cards-container">
+                <div class="card personality-card type-isfp"> <!-- type-isfp for specific styling -->
+                    <div class="card-header">ISFP</div>
+                    <p>"이 테스트 덕분에 제 자신을 더 잘 이해하게 되었어요. 결과가 정말 정확해서 놀랐습니다!"</p>
+                </div>
+                <div class="card personality-card type-estp"> <!-- type-estp -->
+                    <div class="card-header">ESTP</div>
+                    <p>"활동적이고 실용적인 제 성향을 딱 맞췄네요. 친구들에게도 추천했어요!"</p>
+                </div>
+                <div class="card personality-card type-infj"> <!-- type-infj -->
+                    <div class="card-header">INFJ</div>
+                    <p>"통찰력 있는 분석과 따뜻한 조언들이 인상 깊었습니다. 제 미래 계획에 도움이 될 것 같아요."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section_03_Type_Grid -->
+    <section id="type-grid" class="screen type-grid-section">
+        <div class="container">
+            <h2>16 성격 유형에 대해</h2>
+            <div class="mbti-type-grid-container">
+                <!-- Reusing/adapting .direct-mbti-link styling for consistency -->
+                <a href="pages/infj.html" class="direct-mbti-link mbti-grid-item">INFJ</a>
+                <a href="pages/intj.html" class="direct-mbti-link mbti-grid-item">INTJ</a>
+                <a href="pages/infp.html" class="direct-mbti-link mbti-grid-item">INFP</a>
+                <a href="pages/intp.html" class="direct-mbti-link mbti-grid-item">INTP</a>
+                <a href="pages/isfj.html" class="direct-mbti-link mbti-grid-item">ISFJ</a>
+                <a href="pages/istj.html" class="direct-mbti-link mbti-grid-item">ISTJ</a>
+                <a href="pages/isfp.html" class="direct-mbti-link mbti-grid-item">ISFP</a>
+                <a href="pages/istp.html" class="direct-mbti-link mbti-grid-item">ISTP</a>
+                <a href="pages/enfj.html" class="direct-mbti-link mbti-grid-item">ENFJ</a>
+                <a href="pages/entj.html" class="direct-mbti-link mbti-grid-item">ENTJ</a>
+                <a href="pages/enfp.html" class="direct-mbti-link mbti-grid-item">ENFP</a>
+                <a href="pages/entp.html" class="direct-mbti-link mbti-grid-item">ENTP</a>
+                <a href="pages/esfj.html" class="direct-mbti-link mbti-grid-item">ESFJ</a>
+                <a href="pages/estj.html" class="direct-mbti-link mbti-grid-item">ESTJ</a>
+                <a href="pages/esfp.html" class="direct-mbti-link mbti-grid-item">ESFP</a>
+                <a href="pages/estp.html" class="direct-mbti-link mbti-grid-item">ESTP</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section_04_Why_Test -->
+    <section id="why-test" class="screen why-test-section">
+        <div class="container">
+            <h2>16 성격 유형 테스트를 해야 하는 이유는?</h2>
+            <div class="testimonials-container">
+                <div class="card testimonial-card">
+                    <p>"이 테스트는 제 강점과 약점을 명확히 알려주었고, 직업 선택에 큰 도움을 주었어요."</p>
+                    <span class="testimonial-author">- 개발자 지망생 L씨</span>
+                </div>
+                <div class="card testimonial-card">
+                    <p>"파트너와의 관계를 더 잘 이해하게 되었고, 서로의 다름을 존중하는 법을 배웠습니다."</p>
+                    <span class="testimonial-author">- 결혼 5년차 K씨</span>
+                </div>
+                <div class="card testimonial-card">
+                    <p>"단순한 재미를 넘어, 자기 성찰의 기회를 제공하는 깊이 있는 테스트라고 생각합니다."</p>
+                    <span class="testimonial-author">- 대학생 P군</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section_05_Bottom_Illustration -->
+    <section id="bottom-illustration" class="screen bottom-illustration-section">
+        <div class="container">
+            <h2>진정한 나를 열다</h2>
+            <!-- Illustration: <img src="path/to/people-illustration.svg" alt="People illustration"> -->
+            <p class="illustration-placeholder">[일러스트레이션: people-illustration.svg]</p>
+            <button class="btn btn-primary" onclick="document.getElementById('hero').scrollIntoView({ behavior: 'smooth' });">맨 위로 돌아가 테스트 시작</button>
+        </div>
+    </section>
+
+    <!-- Commented out old direct-mbti-links container -->
+    <!-- 
+    <div id="direct-mbti-links" class="direct-links-container" style="margin-top: 30px;">
+        <h2 style="font-family: 'Do Hyeon', sans-serif; color: #ffffff; margin-bottom: 15px; font-size: 1.2em;">MBTI 유형별 정보 바로가기</h2>
+        <a href="pages/infj.html" class="direct-mbti-link">INFJ</a>
+        ... (all 16 links) ...
+        <a href="pages/estp.html" class="direct-mbti-link">ESTP</a>
+    </div>
+    -->
+
+    <div id="question-screen" style="display: none;"> <!-- This screen remains, initially hidden -->
         <p id="question-text"></p>
         <div id="options-container">
             <!-- Answer buttons will be added here by JavaScript -->
         </div>
     </div>
 
-    <div id="result-screen" style="display: none;">
+    <div id="result-screen" style="display: none;"> <!-- This screen remains, initially hidden -->
         <p id="result-text"></p>
-        <div id="community-link-container"> <!-- Inline style removed -->
-            <a id="community-link" href="#">MBTI 정보 보기</a> <!-- Inline style and target removed, text updated -->
+        <div id="community-link-container"> 
+            <a id="community-link" href="#">MBTI 정보 보기</a> 
         </div>
     </div>
 

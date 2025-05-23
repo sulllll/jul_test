@@ -1,79 +1,137 @@
-/* css/mobile.css - Initial Mobile Styles */
+/* css/mobile.css - Final Mobile Styles */
 
-body {
-    /* Potentially increase base font size for mobile readability */
-    /* font-size: 17px; */ 
-}
+/*
+  This file contains mobile-specific overrides and additions.
+  It assumes base.css provides the core mobile-first styles and some responsive adjustments.
+*/
 
-.container, 
-#welcome-screen, 
+/* Ensure main quiz/info containers use more screen width on mobile */
+#hero .container, /* Inner container of hero section */
+#personality-preview .container, /* Inner container of preview section */
 #question-screen, 
 #result-screen,
-.mbti-info-page .container /* Assuming mbti info pages also use .container */
-{
-    width: 90%; /* Use more screen width */
-    padding-left: 5%; /* Adjust padding for smaller screens */
-    padding-right: 5%;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: none; /* Override any max-width from base.css for mobile full-width feel */
+.mbti-info-page .result-screen { /* .result-screen is the main container on info pages */
+    width: 95%;
+    padding-left: var(--spacing-md);  /* e.g., 16px */
+    padding-right: var(--spacing-md); /* e.g., 16px */
+    max-width: none; /* Override base.css max-width for these specific containers on mobile */
 }
 
+/* Specific button padding/font size adjustments for easier touch on mobile,
+   overriding base.css @media query if different touch target size is desired. */
 #start-btn, 
 #options-container button, 
 .btn-back,
 #community-link {
-    padding: 15px 20px; /* Larger padding for easier touch */
-    font-size: 1.1em; /* Slightly larger font for buttons */
+    padding: var(--spacing-md) var(--spacing-lg); /* e.g., 16px 24px */
+    font-size: var(--font-size-lg); /* e.g., 18px */
+}
+/* Ensure pill shape for specific buttons if not universally applied by .btn or specific rules in base.css */
+#start-btn, .btn-back, #community-link {
+    border-radius: var(--border-radius-pill);
 }
 
-/* MBTI Direct Links on Main Page for Mobile */
-.direct-links-container {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 2 or 3 columns based on screen */
-    gap: 12px;
+
+/* Direct MBTI Links on Main Page for Mobile */
+.direct-links-container { /* This is the outer container for the h2 and grid */
+    padding-top: var(--spacing-md); /* Adjust top padding */
+    padding-bottom: var(--spacing-md); /* Adjust bottom padding */
+    margin-top: var(--spacing-lg); /* Adjust margin from start button */
+}
+.direct-links-container .grid-container { /* The actual grid */
+    grid-template-columns: repeat(auto-fit, minmax(85px, 1fr)); /* Slightly adjusted min size */
+    gap: var(--spacing-sm);
 }
 
-/* Further mobile-specific styles can be added, e.g., for question/options layout */
-#options-container {
-    flex-direction: column; /* Ensure options are always stacked vertically */
-}
-
-/* Refining styles for index.html on Mobile */
-.direct-links-container h2 { /* MBTI 유형별 정보 바로가기 제목 */
-    font-size: 1.1em; /* Adjusted from 1.3em for smaller screens if too large */
-    margin-bottom: 15px; /* Adjusted from 20px */
+.direct-links-container h2 {
+    font-size: var(--font-size-lg); /* Consistent with other h3/subheadings on mobile */
+    /* color is var(--text-secondary) from base.css */
+    margin-bottom: var(--spacing-md);
 }
 
 .direct-mbti-link {
-    padding: 10px 5px; /* Slightly adjust padding for mobile */
-    font-size: 0.85em; /* Adjust font size for link text */
-    min-height: 30px; /* Ensure a minimum touchable height */
-    line-height: 1.4;
+    padding: var(--spacing-sm); /* e.g., 8px */
+    font-size: var(--font-size-sm); /* e.g., 14px */
+    /* Base styles (bg, color, border) from base.css */
 }
 
-/* Refining styles for mbti-info-page (e.g., pages/infj.html) on Mobile */
-/* Assuming .mbti-info-page is a class added to the body or main container of these pages, 
-   or we target .container within a specific path, but for now, let's use general selectors 
-   that might apply if structure is consistent or rely on existing .container adjustments. */
+/* MBTI Info Page Specifics for Mobile */
+/* .result-screen h1 on info pages: font-size is handled by base.css @media query for h1. No override needed unless specifically different. */
 
-.result-screen h1 { /* This class is used on mbti_info_pages for the main heading */
-    font-size: 1.6em; /* Adjust heading font size for mobile */
-    margin-bottom: 15px;
+/* .mbti-content-placeholder p: font-size is var(--font-size-base) from base.css. No override needed. */
+
+#disqus_thread {
+    margin-top: var(--spacing-lg); /* Adjusted from xl for tighter mobile layout */
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md); /* Uniform padding for mobile */
+    /* Other styles from base.css */
 }
 
-.mbti-content-placeholder p {
-    font-size: 0.95em; /* Adjust paragraph font size for mobile */
-    line-height: 1.7; /* Improve readability */
+/* #options-container flex-direction: column; is already the default in base.css for this ID. */
+
+/* Ensure hero section specific mobile adjustments if needed */
+.hero-section {
+    padding-top: var(--spacing-xl); /* Slightly less than 2xl if needed */
+    padding-bottom: var(--spacing-xl);
+    min-height: 70vh; /* Adjust hero height for mobile */
+}
+.hero-content h1 {
+    font-size: var(--font-size-3xl); /* Slightly smaller H1 for mobile hero if base.css 4xl is too big */
+}
+.hero-content .subtitle {
+    font-size: var(--font-size-md); /* Matches base.css font-size-base, or use lg if more emphasis */
+    margin-bottom: var(--spacing-lg);
 }
 
-#disqus_thread { /* Disqus container on mobile */
-    margin-top: 25px;
-    margin-bottom: 25px;
-    padding: 15px;
+/* Type Grid Section on Mobile */
+.mbti-type-grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* More items per row, smaller min-width */
+    gap: var(--spacing-sm); /* Reduce gap slightly for mobile */
+}
+.mbti-grid-item {
+    padding: var(--spacing-sm); /* Adjust padding for smaller grid items */
+    font-size: var(--font-size-xs); /* Smaller font for grid items */
 }
 
-/* Ensure .btn-back on mobile is easily tappable */
-.btn-back {
-    padding: 14px 18px;
-    font-size: 1em;
+/* Personality Preview Section on Mobile */
+.personality-preview-section {
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+}
+.personality-preview-section h2 {
+    font-size: var(--font-size-2xl); /* If base.css 3xl is too big */
+    margin-bottom: var(--spacing-lg);
+}
+.preview-cards-container {
+    gap: var(--spacing-md); /* Slightly smaller gap for mobile */
+}
+.personality-card { /* Testimonial cards and Preview cards share this class */
+    flex-basis: 100%; /* Make cards stack vertically on mobile */
+    max-width: 100%; /* Allow cards to take full width within their container */
+}
+.personality-card .card-header { /* For Preview cards */
+    font-size: var(--font-size-lg); /* Adjust header size in card */
+}
+.testimonial-card p { /* For Testimonial cards */
+    font-size: var(--font-size-sm); /* Slightly smaller text for testimonials on mobile */
+}
+.testimonial-card p::before {
+    font-size: 2.5em; /* Adjust quote mark size */
+    top: -5px;
+    left: -2px;
+}
+.testimonial-author {
+    font-size: var(--font-size-xs); /* Smaller author text */
+}
+
+/* Bottom Illustration Section on Mobile */
+.bottom-illustration-section h2 {
+    font-size: var(--font-size-2xl); /* Adjust heading size */
+}
+.bottom-illustration-section .illustration-placeholder {
+    font-size: var(--font-size-sm);
+}
+.bottom-illustration-section .btn-primary {
+    padding: var(--spacing-md) var(--spacing-lg); /* Ensure good tap size */
+    font-size: var(--font-size-lg);
 }

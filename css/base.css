@@ -1,37 +1,253 @@
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@400;700&display=swap');
+/* Pretendard 폰트 import */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
-body {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 400;
-    text-align: center;
-    margin: 0; /* Adjusted margin for full-page gradient */
-    padding: 20px; /* Added padding to body instead of individual margins */
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #F0F0F0; /* Light text color for body */
-    min-height: 100vh; /* Ensure gradient covers full viewport height */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+/* Google Fonts - Do Hyeon (for specific headings if needed, otherwise Pretendard covers Korean) */
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
+:root {
+  /* Color Palette */
+  --primary-purple: #8B5CF6; /* 주 색상 (보라) */
+  --primary-blue: #3B82F6;   /* 주 색상 (파랑) */
+  --accent-pink: #EC4899;    /* 강조 색상 (핑크) */
+  --accent-green: #10B981;   /* 강조 색상 (초록) */
+  --accent-orange: #F59E0B;  /* 강조 색상 (주황) */
+  
+  --neutral-white: #FFFFFF;
+  --neutral-gray-50: #F9FAFB; /* 매우 밝은 회색 (배경용) */
+  --neutral-gray-100: #F3F4F6;/* 밝은 회색 (배경, 구분선용) */
+  --neutral-gray-200: #E5E7EB;/* 약간 밝은 회색 (구분선, 비활성 요소) */
+  --neutral-gray-400: #9CA3AF;/* 중간 회색 (보조 텍스트) */
+  --neutral-gray-600: #4B5563;/* 어두운 회색 (본문 텍스트) */
+  --neutral-gray-800: #1F2937;/* 매우 어두운 회색 (제목, 주요 텍스트) */
+  
+  --text-primary: var(--neutral-gray-800);
+  --text-secondary: var(--neutral-gray-600);
+  --text-placeholder: var(--neutral-gray-400);
+  --text-on-primary-bg: var(--neutral-white); /* 주 색상 배경 위의 텍스트 */
+  --text-on-accent-bg: var(--neutral-white);  /* 강조 색상 배경 위의 텍스트 */
+
+  --page-bg: var(--neutral-gray-50); /* 전체 페이지 배경 */
+  --container-bg: var(--neutral-white); /* 컨텐츠 컨테이너 배경 */
+  --container-border: var(--neutral-gray-200); /* 컨테이너 테두리 */
+  --button-primary-bg: var(--primary-purple);
+  --button-primary-hover-bg: #7C3AED; /* primary-purple의 약간 어두운 버전 */
+  --button-secondary-bg: var(--primary-blue);
+  --button-secondary-hover-bg: #2563EB; /* primary-blue의 약간 어두운 버전 */
+
+  /* Typography */
+  --font-family-base: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  --font-family-heading: 'Do Hyeon', var(--font-family-base); /* 제목용 폰트 (선택적) */
+
+  /* Font Sizes & Weights - Mobile First Approach */
+  --font-size-xs: 0.75rem;  /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem;   /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem;  /* 20px */
+  --font-size-2xl: 1.5rem;  /* 24px */
+  --font-size-3xl: 1.875rem;/* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem;  /* 8px */
+  --spacing-md: 1rem;    /* 16px */
+  --spacing-lg: 1.5rem;  /* 24px */
+  --spacing-xl: 2rem;    /* 32px */
+  --spacing-2xl: 2.5rem; /* 40px */
+
+  /* Borders & Shadows */
+  --border-radius-sm: 0.25rem; /* 4px */
+  --border-radius-md: 0.375rem;/* 6px */
+  --border-radius-lg: 0.5rem;  /* 8px */
+  --border-radius-xl: 0.75rem; /* 12px */
+  --border-radius-pill: 9999px;/* Pill shape */
+
+  --box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --box-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --box-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
+/* Basic Reset & Global Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px; /* Base font size */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+  background-color: var(--page-bg);
+  padding: var(--spacing-md); /* Add some padding around the body */
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  text-align: center;
+}
+
+h1 { font-size: var(--font-size-3xl); }
+h2 { font-size: var(--font-size-2xl); }
+h3 { font-size: var(--font-size-xl); }
+/* Add more if needed */
+
+p {
+  margin-bottom: var(--spacing-md);
+  line-height: var(--line-height-relaxed);
+  color: var(--text-secondary);
+  max-width: 65ch; /* Limit line length for readability */
+  margin-left: auto; /* Center paragraph blocks */
+  margin-right: auto;
+  text-align: left; /* Default text alignment for paragraphs */
+}
+
+a {
+  color: var(--primary-purple);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+a:hover {
+  color: var(--accent-pink);
+  text-decoration: underline;
+}
+
+/* Buttons - General Styling */
+.btn {
+  display: inline-block;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background-color: var(--button-primary-bg);
+  color: var(--text-on-primary-bg);
+}
+.btn-primary:hover {
+  background-color: var(--button-primary-hover-bg);
+  color: var(--text-on-primary-bg);
+}
+
+.btn-secondary {
+  background-color: var(--button-secondary-bg);
+  color: var(--text-on-primary-bg); /* Assuming white text for blue button too */
+}
+.btn-secondary:hover {
+  background-color: var(--button-secondary-hover-bg);
+  color: var(--text-on-primary-bg);
+}
+
+.btn-accent-orange {
+  background-color: var(--accent-orange);
+  color: var(--text-on-accent-bg);
+}
+.btn-accent-orange:hover {
+  background-color: #D97706; /* Darker orange */
+  color: var(--text-on-accent-bg);
+}
+
+.btn-accent-green {
+  background-color: var(--accent-green);
+  color: var(--text-on-accent-bg);
+}
+.btn-accent-green:hover {
+  background-color: #059669; /* Darker green */
+  color: var(--text-on-accent-bg);
+}
+
+.btn-accent-pink {
+  background-color: var(--accent-pink);
+  color: var(--text-on-accent-bg);
+}
+.btn-accent-pink:hover {
+  background-color: #DB2777; /* Darker pink */
+  color: var(--text-on-accent-bg);
+}
+
+.btn-neutral { /* For less prominent actions, like "Back to test" */
+  background-color: var(--neutral-gray-200);
+  color: var(--text-secondary);
+  border-color: var(--neutral-gray-200);
+}
+.btn-neutral:hover {
+  background-color: var(--neutral-gray-100);
+  border-color: var(--neutral-gray-100);
+  color: var(--text-primary);
+}
+
+/* General Page Layout & Containers */
+.main-container, /* A general wrapper if needed */
+#welcome-screen,
+#question-screen,
+#result-screen,
+.mbti-info-page .container { /* Specific for info pages, assuming .container is within a page-specific class */
+  background-color: var(--container-bg);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--box-shadow-lg);
+  width: 100%;
+  max-width: 600px; /* Default max-width for these specific containers */
+  margin: var(--spacing-xl) auto; /* Centering the container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; /* Center text within these containers by default */
+}
+
+/* Transitions for Screens (from previous setup) */
 #welcome-screen,
 #question-screen,
 #result-screen {
-    padding: 40px; /* Increased padding */
-    margin: 20px auto;
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
-    border-radius: 20px; /* Increased border-radius */
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
-    max-width: 600px;
-    color: #333333; /* Dark text color for content inside containers */
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    display: flex; /* Using flex for centering content */
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 #welcome-screen {
-    opacity: 1;
+    opacity: 1; /* Initially visible */
     transform: translateY(0);
+    /* display: flex; is already set by the general rule above */
 }
 
 #question-screen,
@@ -41,255 +257,440 @@ body {
     transform: translateY(20px);
 }
 
-.screen-active { /* Class to make screens visible with animation */
-    display: flex !important; /* Override display:none */
-    opacity: 1;
-    transform: translateY(0);
-}
+/* No .screen-active needed if JS handles direct style changes for display, opacity, transform */
 
-
-button {
-    padding: 10px 20px;
-    margin: 10px;
-    background-color: #007bff;
-    color: #FFFFFF; /* Default white text for buttons */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px; /* Equivalent to 1em for base button size */
-    font-family: 'Noto Sans KR', sans-serif; /* Ensure buttons use Noto Sans KR */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Added for all buttons */
-    border: none; /* Ensure all buttons have no border by default */
-    cursor: pointer; /* Ensure cursor is pointer for all buttons */
-}
-
-button:hover {
-    background-color: #0056b3; /* Default hover, can be overridden */
-    transform: scale(1.05); /* Default hover transform */
+/* Specific Element Styling - Using .btn classes */
+#start-btn {
+  /* Inherits from .btn and .btn-accent-orange */
+  padding: var(--spacing-md) var(--spacing-xl); /* Larger padding */
+  font-size: var(--font-size-lg);
+  border-radius: var(--border-radius-pill);
 }
 
 #options-container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Spacing between option buttons */
-    width: 100%; /* Use full width of parent */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+  margin-top: var(--spacing-lg);
 }
 
 #options-container button {
-    /* display: block; */ /* No longer needed due to flex container */
-    /* width: calc(100% - 40px); */ /* Flex will handle width, or set to 100% if needed */
-    width: 100%; /* Make buttons take full width of flex container */
-    /* margin: 10px auto; */ /* Gap handles spacing */
-    padding: 12px 24px; /* Increased padding */
-    background-color: #5cb85c; /* A distinct, friendly green */
-    color: #FFFFFF; /* White text for these specific buttons */
-    font-weight: 700; /* Bolder text for options */
-    border-radius: 8px; /* Softer radius */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    font-size: 1em; /* Standard font size */
+  /* Inherits from .btn and .btn-accent-green */
+  width: 100%;
+  font-weight: var(--font-weight-semibold); /* Already in .btn, but can be emphasized */
 }
 
-#options-container button:hover {
-    background-color: #4cae4c; /* Darker green on hover */
-    transform: scale(1.05); /* Specific hover transform if needed, or rely on general button:hover */
+#community-link {
+  /* Inherits from .btn and .btn-accent-pink */
+  margin-top: var(--spacing-lg);
+  border-radius: var(--border-radius-pill);
 }
 
+.btn-back {
+  /* Inherits from .btn and .btn-neutral */
+  margin-top: var(--spacing-lg);
+  border-radius: var(--border-radius-pill);
+}
+
+/* Text Elements */
 #question-text {
-    font-size: 1.2em;
-    margin-bottom: 30px; /* Increased margin */
-    line-height: 1.6;
-    color: #333333; /* Ensure dark text on light container background */
-    font-weight: 700; /* Make question text bolder */
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  text-align: center; /* Ensure question text is centered */
 }
 
 #result-text {
-    font-family: 'Do Hyeon', sans-serif;
-    font-size: 1.5em; /* Slightly larger for emphasis */
-    margin-bottom: 20px;
-    line-height: 1.6;
-    font-weight: normal; /* Do Hyeon is naturally bold, so normal might be sufficient or use its default */
-    color: #333333; /* Ensure dark text on light container background */
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  text-align: center;
 }
 
-h1 {
-    font-family: 'Do Hyeon', sans-serif;
-    color: #FFFFFF; /* Light color for h1, as it's on the gradient background */
-    font-weight: normal; /* Do Hyeon is naturally bold */
+/* Direct MBTI Links Section on Welcome Page */
+.direct-links-container {
+  background-color: transparent; /* No separate background, just part of welcome screen */
+  padding: var(--spacing-md) 0; /* Padding top/bottom, no side padding as it's centered */
+  border-radius: 0; /* No distinct border radius */
+  box-shadow: none; /* No distinct shadow */
+  margin-top: var(--spacing-xl);
+  width: 100%;
+  max-width: 500px; /* Limit width of the links grid */
+}
+.direct-links-container h2 { /* "MBTI 유형별 정보 바로가기" */
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary); /* Softer color for this sub-heading */
+  margin-bottom: var(--spacing-lg);
+}
+.direct-links-container .grid-container { /* New wrapper for the grid of links */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: var(--spacing-sm);
+}
+.direct-mbti-link {
+  /* Uses .btn class for base styling */
+  background-color: var(--neutral-gray-100);
+  color: var(--primary-blue); /* Make links stand out a bit */
+  border: 1px solid var(--neutral-gray-200);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  padding: var(--spacing-sm);
+}
+.direct-mbti-link:hover {
+  background-color: var(--neutral-gray-200);
+  color: var(--primary-purple);
+  border-color: var(--neutral-gray-200);
 }
 
-/* Specific styling for the start button if it's on the welcome screen directly on the gradient */
-#welcome-screen h1 {
-    font-family: 'Do Hyeon', sans-serif; /* Ensure this h1 also uses Do Hyeon */
-    color: #333333; /* Override if h1 is inside welcome-screen */
-    font-weight: normal; /* Do Hyeon is naturally bold */
-    margin-bottom: 30px; /* Added margin for spacing */
+/* MBTI Info Page Specifics */
+.mbti-content-placeholder {
+  background-color: var(--neutral-gray-50); /* Very light bg for content area */
+  border: 1px solid var(--container-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  width: 100%;
+  text-align: left; /* Content within placeholder should be left-aligned */
 }
-#start-btn {
-    background-color: #f0ad4e; /* A welcoming orange */
-    color: #FFFFFF;
-    padding: 15px 30px; /* Increased padding */
-    border-radius: 25px; /* Pill shape */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    font-size: 1.1em; /* Slightly larger font */
+.mbti-content-placeholder p {
+  color: var(--text-secondary);
+  max-width: none; /* Allow paragraphs to fill placeholder width */
+  margin-left: 0; /* Align to left of placeholder */
+  margin-right: 0;
 }
-#start-btn:hover {
-    background-color: #ec971f; /* Darker orange on hover */
-    transform: scale(1.05); /* Specific hover transform */
+.mbti-content-placeholder p strong {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
 }
 
-#community-link-container {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Light separator for dark bg */
-    width: 80%; /* Or 100% if it should span full container width, adjust as needed */
-    max-width: 400px; /* Max width for the link button area */
-    text-align: center; /* Center the link button if it's inline-block */
+/* Disqus Container */
+#disqus_thread {
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-lg) 0; /* Padding top/bottom */
+  border-top: 1px solid var(--container-border);
+  width: 100%;
+  max-width: 800px; /* Allow Disqus to be wider if needed */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Responsive Font Sizes (Optional - if specific adjustments needed beyond flexible units) */
+@media (max-width: 768px) {
+  h1 { font-size: var(--font-size-2xl); }
+  h2 { font-size: var(--font-size-xl); }
+  h3 { font-size: var(--font-size-lg); }
+  #question-text { font-size: var(--font-size-lg); }
+  #result-text { font-size: var(--font-size-xl); }
+  .btn, #start-btn, #options-container button, #community-link, .btn-back {
+    padding: calc(var(--spacing-sm) * 1.2) calc(var(--spacing-lg) * 1.2); /* Slightly larger padding on mobile */
+  }
+}
+
+/* Section_03_Type_Grid Styles */
+.type-grid-section {
+    /* background-color: var(--page-bg); /* Already on body, but can be section specific */
+    padding-top: var(--spacing-2xl);
+    padding-bottom: var(--spacing-2xl);
+    text-align: center;
+}
+
+.type-grid-section h2 { /* "16 성격 유형에 대해" */
+    margin-bottom: var(--spacing-xl);
+    /* font styling from general h2 rules */
+}
+
+.mbti-type-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Default responsive grid */
+    gap: var(--spacing-md);
+    max-width: 800px; /* Limit width of the grid itself */
+    margin: 0 auto; /* Center the grid container */
+}
+
+/* .mbti-grid-item uses .direct-mbti-link class for base styling.
+   .direct-mbti-link is already styled in base.css:
+    background-color: var(--neutral-gray-100);
+    color: var(--primary-blue);
+    border: 1px solid var(--neutral-gray-200);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    padding: var(--spacing-sm);
+    transition inherited from .btn
+*/
+.mbti-grid-item { /* Additional class for grid items if specific overrides are needed */
+    padding: var(--spacing-md) var(--spacing-sm); /* Adjust padding for grid items */
+    font-weight: var(--font-weight-semibold); /* Make text slightly bolder */
+    /* background-color: var(--neutral-gray-50); /* Slightly different background for grid items if needed */
+}
+
+.mbti-grid-item:hover { /* Override from .direct-mbti-link hover if needed */
+    background-color: var(--primary-purple); /* Use primary purple for hover */
+    color: var(--text-on-primary-bg); /* White text on hover */
+    border-color: var(--primary-purple); /* Match border to background */
+    transform: translateY(-2px); /* Keep consistent hover */
+    box-shadow: var(--box-shadow-md); /* Add shadow on hover */
+}
+
+
+/* Section_04_Why_Test Styles */
+.why-test-section {
+    background-color: var(--neutral-gray-100); /* Alternate section background (was --bg-light-purple) */
+    padding-top: var(--spacing-2xl);
+    padding-bottom: var(--spacing-2xl);
+    text-align: center;
+}
+
+.why-test-section h2 { /* "16 성격 유형 테스트를 해야 하는 이유는?" */
+    margin-bottom: var(--spacing-xl);
+     /* font styling from general h2 rules */
+}
+
+.testimonials-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: center;
+    gap: var(--spacing-lg);
+    max-width: 1200px; /* Max width for testimonials area */
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background-color: var(--container-bg); /* Usually white */
+    border: 1px solid var(--container-border);
+    border-radius: var(--border-radius-xl);
+    padding: var(--spacing-lg);
+    box-shadow: var(--box-shadow-md);
+    flex-basis: 280px; /* Base size for cards */
+    flex-grow: 1;
+    max-width: 350px; /* Max card width for testimonials */
+    text-align: left;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--box-shadow-lg);
+}
+
+.testimonial-card p {
+    /* font from general p rules */
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+    position: relative;
+    padding-left: var(--spacing-lg); /* Space for the quote mark */
+    max-width: none; /* Override general p max-width */
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.testimonial-card p::before {
+    content: '\201C'; /* Left double quotation mark */
+    font-size: 3em; /* Large quote mark */
+    font-family: serif; /* For a more traditional quote mark style */
+    color: var(--primary-purple);
+    opacity: 0.3;
+    position: absolute;
+    left: -5px; 
+    top: -10px; /* Adjust position slightly */
+}
+
+.testimonial-author {
+    display: block;
+    text-align: right;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-placeholder); /* Was --text-tertiary, using placeholder for softer look */
+    margin-top: var(--spacing-md);
+}
+
+
+/* Section_05_Bottom_Illustration Styles */
+.bottom-illustration-section {
+    background-color: var(--primary-blue); 
+    color: var(--text-on-primary-bg); /* White text */
+    padding-top: var(--spacing-2xl);
+    padding-bottom: var(--spacing-2xl);
+    text-align: center;
+}
+
+.bottom-illustration-section h2 { /* "진정한 나를 열다" */
+    color: var(--text-on-primary-bg); /* Override default heading color */
+    margin-bottom: var(--spacing-md);
+     /* font styling from general h2 rules */
+}
+
+.bottom-illustration-section .illustration-placeholder {
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+    font-size: var(--font-size-base); /* Make placeholder text larger */
+    opacity: 0.8;
+}
+
+.bottom-illustration-section .btn-primary {
+    /* This button uses .btn and .btn-primary classes.
+       .btn-primary in base.css uses var(--button-primary-bg) which is purple.
+       If an orange button is desired here, a new class or inline style would be needed,
+       or change the class in HTML to .btn-accent-orange.
+       For now, it will be a purple button. */
+    /* Example: If we wanted to force orange here (but HTML has btn-primary): */
+    /* background-color: var(--accent-orange); */
+    /* color: var(--text-on-accent-bg); */
+}
+.bottom-illustration-section .btn-primary:hover {
+     /* background-color: #D97706; /* Darker orange */
+}
+
+/* Hero Section Styles */
+.hero-section {
+    /* background-color: var(--bg-light-purple); /* Or another hero-specific background */
+    /* text-align: center; /* Already in body, but can be specific */
+    /* display: flex; /* To center content vertically if .screen has min-height: 100vh */
+    /* flex-direction: column; */ /* These are already on #hero (formerly #welcome-screen) */
+    /* justify-content: center; */
+    /* align-items: center; */
+    padding-top: var(--spacing-2xl); /* More padding for hero */
+    padding-bottom: var(--spacing-2xl);
+    min-height: 80vh; /* Make hero take substantial viewport height but not necessarily full */
+}
+
+.hero-content h1 {
+    font: var(--font-h1); /* Ensure it uses the correct h1 style */
+    /* color: var(--text-primary); /* Inherited */
+    margin-bottom: var(--spacing-md);
+    font-family: var(--font-family-heading); /* Explicitly use heading font if different */
+    font-size: var(--font-size-4xl); /* Make hero H1 larger */
+}
+
+.hero-content .subtitle {
+    font-size: var(--font-size-lg); /* Larger than body, smaller than h3 */
+    line-height: var(--line-height-relaxed);
+    color: var(--text-secondary);
+    max-width: 60ch; /* Good readability for subtitle */
+    margin-bottom: var(--spacing-xl); /* Increased margin */
+    text-align: center; /* Center subtitle text */
+}
+
+.hero-content #start-btn { /* Ensure it's using the new button styles */
+    padding: var(--spacing-lg) var(--spacing-2xl); /* Larger CTA padding */
+    font-size: var(--font-size-xl); 
+    /* text-transform: uppercase; */ /* Optional */
+    /* background-color is var(--accent-orange) from HTML class .btn-accent-orange */
+}
+
+.illustration-placeholder {
+    margin-top: var(--spacing-xl); /* Increased margin */
+    font-size: var(--font-size-sm);
+    color: var(--text-placeholder);
+}
+
+/* Personality Preview Section Styles */
+.personality-preview-section {
+    background-color: var(--neutral-gray-100); /* Light gray background for this section */
+    padding-top: var(--spacing-2xl);
+    padding-bottom: var(--spacing-2xl);
+    text-align: center;
+}
+
+.personality-preview-section h2 {
+    margin-bottom: var(--spacing-xl);
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-3xl);
+}
+
+.preview-cards-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: center;
+    gap: var(--spacing-lg);
+    max-width: 1200px; /* Max width for the cards container itself */
     margin-left: auto;
     margin-right: auto;
 }
 
-#community-link {
-    display: inline-block;
-    text-decoration: none;
-    padding: 12px 25px; /* Adjusted padding */
-    color: #FFFFFF;
-    background-color: #ff6b6b; /* Coral/reddish pink */
-    border-radius: 25px; /* Pill shape */
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 700;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.2s ease;
+.personality-card {
+    background-color: var(--container-bg); /* Usually white */
+    border: 1px solid var(--container-border);
+    border-radius: var(--border-radius-xl); /* Larger radius for cards */
+    padding: var(--spacing-lg);
+    box-shadow: var(--box-shadow-md);
+    flex-basis: 280px; /* Base size for cards */
+    flex-grow: 1;
+    max-width: 320px; /* Max card width */
+    text-align: left;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.personality-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--box-shadow-lg);
 }
 
-#community-link:hover {
-    background-color: #ee5253; /* Darker coral/reddish pink */
-    transform: scale(1.05);
-    color: #FFFFFF; /* Ensure text color remains white on hover */
+.personality-card .card-header {
+    font-size: var(--font-size-xl); /* Was h3, making it xl */
+    font-family: var(--font-family-heading);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-on-accent-bg); /* White text on colored background */
+    padding: var(--spacing-md); /* Adjusted padding */
+    border-top-left-radius: var(--border-radius-xl); /* Match card's radius */
+    border-top-right-radius: var(--border-radius-xl);
+    /* Negative margins to make it flush with card padding */
+    margin: calc(-1 * var(--spacing-lg)) calc(-1 * var(--spacing-lg)) var(--spacing-lg); 
 }
 
-/* Styling for Back Button on MBTI Info Pages */
-.btn-back {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 30px; /* Increased margin for more space */
-    background-color: #6c757d; /* Neutral color */
-    color: white;
-    text-decoration: none;
-    border-radius: 25px; /* Pill shape to match other main buttons */
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Consistent shadow */
+/* Specific card header colors - using accent colors as examples */
+.personality-card.type-isfp .card-header { background-color: var(--primary-blue); }
+.personality-card.type-estp .card-header { background-color: var(--accent-green); }
+.personality-card.type-infj .card-header { background-color: var(--primary-purple); }
+
+.personality-card p {
+    font-size: var(--font-size-base); /* Standard body text for card content */
+    color: var(--text-secondary);
+    max-width: none; /* Override p max-width for card layout */
+    margin-left: 0; 
+    margin-right: 0;
+    text-align: left; /* Ensure p text is left aligned */
+    line-height: var(--line-height-normal);
 }
 
-.btn-back:hover {
-    background-color: #5a6268; /* Darker neutral */
-    transform: scale(1.05);
-    color: white; /* Ensure text color remains white */
-}
-
-/* Styling for MBTI Content Placeholder on Info Pages */
-.mbti-content-placeholder {
-   background-color: rgba(255, 255, 255, 0.05); /* Subtle background for dark theme */
-   text-align: left; /* Align text to left for readability */
-   padding: 25px; /* Increased padding */
-   border-radius: 15px; /* Softer, larger radius */
-   margin-top: 20px;
-   margin-bottom: 30px;
-   width: 100%; /* Take full width of the container */
-   box-sizing: border-box; /* Include padding in width calculation */
-}
-
-.mbti-content-placeholder p {
-   margin-bottom: 12px; /* Slightly more space between paragraphs */
-   line-height: 1.7; /* Improved line height for readability */
-   color: #333; /* Ensure text is dark on the light placeholder bg */
-}
-
-.mbti-content-placeholder p strong {
-    font-weight: 700; /* Noto Sans KR bold */
-    color: #333; /* Ensure strong text is also dark */
-}
-
-/* Ensure h1 on these pages also uses Do Hyeon and is styled like other h1s if not already covered */
-.result-screen h1 {
-    font-family: 'Do Hyeon', sans-serif;
-    color: #333333; /* Dark color, as it's on a light-ish container background */
-    font-weight: normal; /* Do Hyeon is naturally bold */
-    margin-bottom: 20px; /* Spacing below heading */
-}
-/* The .container class is general, .result-screen provides the themed box.
-   The HTML uses <div class="container result-screen"> which is good.
-   The .result-screen already has:
-    padding: 40px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
-    max-width: 600px;
-    color: #333333;
+/* Adjusting general .screen behavior if it was meant for full viewport height */
+/* The new structure uses <section id="hero" class="screen hero-section">
+   and <section id="personality-preview" class="screen personality-preview-section">
+   If .screen implies min-height: 100vh, it might make these sections too tall.
+   The #hero, #question-screen, #result-screen rule already sets display:flex, etc.
+   If .screen class is added, we should check its definition.
+   For now, specific section styling like .hero-section's min-height: 80vh is applied.
+*/
+/* If a generic .screen class is used for full-height sections: */
+/*
+.screen {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    This should be fine for consistency.
+    align-items: center;
+    width: 100%;
+}
 */
 
-/* Styles for Direct MBTI Links Section on Welcome Screen */
-.direct-links-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 10px;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.1); /* Subtle background to group links */
-    border-radius: 10px;
-    margin-top: 40px; /* Ensure space from start button */
-    width: 100%; /* Ensure it takes available width in its parent */
-    max-width: 560px; /* Consistent with other containers, but adjust if needed */
-    box-sizing: border-box; /* Include padding in width calculation */
+/* Ensure main containers for hero and preview are distinct from quiz screens */
+#hero, #personality-preview {
+    background-color: transparent; /* Overriding the --container-bg from the general rule */
+    box-shadow: none; /* No box shadow for these full-width sections */
+    max-width: none; /* Allow these sections to be full-width */
+    padding-left: 0; /* Full width, padding will be on inner .container */
+    padding-right: 0;
+    /* text-align: center; is already set by the #welcome-screen/#hero rule */
 }
-
-.direct-links-container h2 {
-    font-family: 'Do Hyeon', sans-serif;
-    color: #FFFFFF;
-    margin-bottom: 20px;
-    font-size: 1.3em;
-    text-align: center;
-    grid-column: 1 / -1; /* Make heading span all columns */
+#hero .container, #personality-preview .container {
+    max-width: 1200px; /* Standard max-width for content within these sections */
+    margin-left: auto;
+    margin-right: auto;
+    padding: var(--spacing-md); /* Padding for the inner content container */
 }
-
-.direct-mbti-link {
-    display: block;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.15);
-    color: #FFFFFF;
-    text-decoration: none;
-    border-radius: 8px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 0.9em;
-    text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.direct-mbti-link:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px); /* Subtle lift effect */
-    color: #FFFFFF;
-}
-
-/* Styles for Disqus Comments Section Container */
-#disqus_thread {
-    margin-top: 40px; /* Increased margin for better separation */
-    padding-top: 30px; /* Increased padding */
-    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Using a color consistent with other borders */
-    padding: 20px; /* Uniform padding */
-    background-color: rgba(0, 0, 0, 0.05); /* Subtle background as used in mbti-content-placeholder */
-    border-radius: 8px; /* Consistent border radius */
-    margin-bottom: 30px; /* Space before the "Back to test" button */
-    width: 100%; /* Ensure it takes full width of the container */
-    max-width: 600px; /* Align with the main container width */
-    box-sizing: border-box; /* Include padding in width/height */
-    margin-left: auto; /* Center the Disqus container */
-    margin-right: auto; /* Center the Disqus container */
+#personality-preview {
+    background-color: var(--neutral-gray-100); /* Specific bg for this section */
 }

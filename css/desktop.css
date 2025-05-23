@@ -1,68 +1,46 @@
-/* css/desktop.css - Initial Desktop Styles */
+/* css/desktop.css - Final Desktop Styles */
 
-/* Most desktop styles might be inherited from base.css. 
-   Add overrides or desktop-specific styles here if needed. */
+/*
+  base.css provides comprehensive mobile-first and responsive styles.
+  This file is intended for desktop-specific overrides or enhancements
+  that are not covered by base.css or if a different layout/sizing is
+  explicitly desired for desktop viewports (typically > 768px).
 
-/* Example: Ensure containers have a max-width on desktop for better readability */
-.container,
-#welcome-screen, 
-#question-screen, 
-#result-screen,
-.mbti-info-page .container { /* Assuming mbti info pages also use .container or this specific structure */
-    max-width: 800px; /* Or your preferred max-width for desktop content area */
-    /* margin-left: auto; margin-right: auto; is likely in base.css already */
-}
-
-/* Example: If direct links grid on main page needs adjustment for desktop */
-.direct-links-container {
-    /* Desktop might prefer more columns if base.css or mobile.css changed it too much */
-    /* grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* This was the desktop-like default */
-    /* The base.css has grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-       which is good for desktop. Mobile.css overrides it to minmax(100px, 1fr).
-       If we want to ensure the 80px version for desktop explicitly, we can uncomment below: */
-    /* grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); */
-}
-
-/* If mobile.css made options-container always column, desktop might want row for some cases (if applicable) */
-/* #options-container { */
-    /* flex-direction: row; */ /* Example if options were meant to be side-by-side on desktop */
-/* } */
-
-/* Note: The main containers (#welcome-screen, #question-screen, #result-screen)
-   already have a max-width of 600px from base.css.
-   The .container rule here with max-width: 800px might be intended for a more general
-   .container class if used elsewhere, or to override the specific screen max-widths
-   if those were to be wider on desktop. For now, 600px from base.css will apply to those IDs.
-   If the MBTI info pages use a class like `.container` directly and not one of those IDs,
-   then `max-width: 800px` would apply to them.
+  Given the current base.css, this file might be very minimal or even empty.
 */
 
-/* Refining styles for index.html on Desktop */
-.direct-links-container {
-    /* Ensure it doesn't get too wide, even within an 800px container, 
-       or if the container is wider. */
-    /* max-width: 600px; /* Example: Limit width of the link grid itself */
-    /* margin-left: auto; */ /* To center if max-width is applied */
-    /* margin-right: auto; */
-    /* The grid-template-columns from base or mobile might be fine, 
-       but if we want to enforce, e.g., max 4 columns: */
-    /* grid-template-columns: repeat(4, minmax(80px, 1fr)); */
-}
+/* Example: If MBTI information pages should have a wider content area on desktop
+   than the default 600px max-width applied to .result-screen containers. */
+/*
+.mbti-info-page .result-screen { 
+    max-width: 800px; /* Or var(--spacing-2xl) * 20, or another desired width */
+/* }
+*/
 
-/* Refining styles for mbti-info-page (e.g., pages/infj.html) on Desktop */
+/* Example: If the grid of direct MBTI links on the welcome page needs
+   a different column layout specifically for very wide screens.
+   base.css styles .direct-links-container .grid-container with
+   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); 
+   This is generally good for responsiveness.
+*/
+/*
+.direct-links-container .grid-container {
+    grid-template-columns: repeat(6, 1fr); /* Example: fixed 6 columns on desktop */
+/* }
+*/
 
-.result-screen h1 { /* Heading on mbti_info_pages */
-    font-size: 2em; /* Desktop can have larger headings */
+/* For the .mbti-type-grid-container in Section_03_Type_Grid:
+   base.css sets: grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+   and max-width: 800px. This is generally suitable for desktop.
+   An override like 'grid-template-columns: repeat(4, 1fr);' could be used
+   if a fixed column count is preferred over auto-fit.
+*/
+/*
+.mbti-type-grid-container {
+    grid-template-columns: repeat(4, 1fr); 
 }
+*/
 
-.mbti-content-placeholder p {
-    font-size: 1em; /* Standard paragraph size for desktop */
-    line-height: 1.6;
-}
 
-/* #disqus_thread on desktop - already has max-width: 600px from previous step, which is good.
-   Ensure side padding/margins are balanced if not already. */
-#disqus_thread {
-    /* padding-left: 20px; */ /* Example if more side padding needed within its max-width */
-    /* padding-right: 20px; */
-}
+/* Most other styles (typography, buttons, general containers) are expected
+   to be well-handled by base.css for desktop. */
