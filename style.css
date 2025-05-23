@@ -167,3 +167,70 @@ h1 {
     transform: scale(1.05);
     color: #FFFFFF; /* Ensure text color remains white on hover */
 }
+
+/* Styling for Back Button on MBTI Info Pages */
+.btn-back {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 30px; /* Increased margin for more space */
+    background-color: #6c757d; /* Neutral color */
+    color: white;
+    text-decoration: none;
+    border-radius: 25px; /* Pill shape to match other main buttons */
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Consistent shadow */
+}
+
+.btn-back:hover {
+    background-color: #5a6268; /* Darker neutral */
+    transform: scale(1.05);
+    color: white; /* Ensure text color remains white */
+}
+
+/* Styling for MBTI Content Placeholder on Info Pages */
+.mbti-content-placeholder {
+   background-color: rgba(255, 255, 255, 0.05); /* Subtle background for dark theme */
+   text-align: left; /* Align text to left for readability */
+   padding: 25px; /* Increased padding */
+   border-radius: 15px; /* Softer, larger radius */
+   margin-top: 20px;
+   margin-bottom: 30px;
+   width: 100%; /* Take full width of the container */
+   box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.mbti-content-placeholder p {
+   margin-bottom: 12px; /* Slightly more space between paragraphs */
+   line-height: 1.7; /* Improved line height for readability */
+   color: #333; /* Ensure text is dark on the light placeholder bg */
+}
+
+.mbti-content-placeholder p strong {
+    font-weight: 700; /* Noto Sans KR bold */
+    color: #333; /* Ensure strong text is also dark */
+}
+
+/* Ensure h1 on these pages also uses Do Hyeon and is styled like other h1s if not already covered */
+.result-screen h1 {
+    font-family: 'Do Hyeon', sans-serif;
+    color: #333333; /* Dark color, as it's on a light-ish container background */
+    font-weight: normal; /* Do Hyeon is naturally bold */
+    margin-bottom: 20px; /* Spacing below heading */
+}
+/* The .container class is general, .result-screen provides the themed box.
+   The HTML uses <div class="container result-screen"> which is good.
+   The .result-screen already has:
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    color: #333333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    This should be fine for consistency.
+*/

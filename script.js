@@ -9,24 +9,24 @@ const resultText = document.getElementById('result-text');
 const communityLinkContainer = document.getElementById('community-link-container');
 const communityLink = document.getElementById('community-link');
 
-// MBTI Community Links Data
+// MBTI Community Links Data (Updated to point to local HTML files)
 const mbtiCommunityLinks = {
-  ISTJ: "#istj-link-placeholder",
-  ISFJ: "#isfj-link-placeholder",
-  INFJ: "#infj-link-placeholder",
-  INTJ: "#intj-link-placeholder",
-  ISTP: "#istp-link-placeholder",
-  ISFP: "#isfp-link-placeholder",
-  INFP: "#infp-link-placeholder",
-  INTP: "#intp-link-placeholder",
-  ESTP: "#estp-link-placeholder",
-  ESFP: "#esfp-link-placeholder",
-  ENFP: "#enfp-link-placeholder",
-  ENTP: "#entp-link-placeholder",
-  ESTJ: "#estj-link-placeholder",
-  ESFJ: "#esfj-link-placeholder",
-  ENFJ: "#enfj-link-placeholder",
-  ENTJ: "#entj-link-placeholder",
+  ISTJ: "istj.html",
+  ISFJ: "isfj.html",
+  INFJ: "infj.html",
+  INTJ: "intj.html",
+  ISTP: "istp.html",
+  ISFP: "isfp.html",
+  INFP: "infp.html",
+  INTP: "intp.html",
+  ESTP: "estp.html",
+  ESFP: "esfp.html",
+  ENFP: "enfp.html",
+  ENTP: "entp.html",
+  ESTJ: "estj.html",
+  ESFJ: "esfj.html",
+  ENFJ: "enfj.html",
+  ENTJ: "entj.html",
 };
 
 // State Variables
@@ -205,7 +205,8 @@ function calculateAndShowResult() {
         const linkUrl = mbtiCommunityLinks[mbtiResult];
         if (linkUrl) {
             communityLink.href = linkUrl;
-            communityLink.textContent = `${mbtiResult} 유형 커뮤니티 바로가기`;
+            communityLink.textContent = `${mbtiResult} 유형 특징 자세히 보기`; // Updated text
+            // communityLink.target = "_blank"; // Ensure this line is removed or commented out if it exists
             communityLink.style.display = 'inline-block';
             communityLinkContainer.style.display = 'block';
         } else {
