@@ -6,6 +6,28 @@ const startBtn = document.getElementById('start-btn');
 const questionText = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options-container');
 const resultText = document.getElementById('result-text');
+const communityLinkContainer = document.getElementById('community-link-container');
+const communityLink = document.getElementById('community-link');
+
+// MBTI Community Links Data
+const mbtiCommunityLinks = {
+  ISTJ: "#istj-link-placeholder",
+  ISFJ: "#isfj-link-placeholder",
+  INFJ: "#infj-link-placeholder",
+  INTJ: "#intj-link-placeholder",
+  ISTP: "#istp-link-placeholder",
+  ISFP: "#isfp-link-placeholder",
+  INFP: "#infp-link-placeholder",
+  INTP: "#intp-link-placeholder",
+  ESTP: "#estp-link-placeholder",
+  ESFP: "#esfp-link-placeholder",
+  ENFP: "#enfp-link-placeholder",
+  ENTP: "#entp-link-placeholder",
+  ESTJ: "#estj-link-placeholder",
+  ESFJ: "#esfj-link-placeholder",
+  ENFJ: "#enfj-link-placeholder",
+  ENTJ: "#entj-link-placeholder",
+};
 
 // State Variables
 let currentQuestionIndex = 0;
@@ -177,7 +199,20 @@ function calculateAndShowResult() {
         // Animate in result screen
         resultScreen.style.opacity = '1';
         resultScreen.style.transform = 'translateY(0)';
-        resultText.textContent = `당신의 MBTI 유형은 ${result} 입니다.`;
+        resultText.textContent = `당신의 MBTI 유형은 ${mbtiResult} 입니다.`;
+
+        // Update and display community link
+        const linkUrl = mbtiCommunityLinks[mbtiResult];
+        if (linkUrl) {
+            communityLink.href = linkUrl;
+            communityLink.textContent = `${mbtiResult} 유형 커뮤니티 바로가기`;
+            communityLink.style.display = 'inline-block';
+            communityLinkContainer.style.display = 'block';
+        } else {
+            communityLink.style.display = 'none';
+            communityLinkContainer.style.display = 'none';
+        }
+
     }, 500); // Corresponds to CSS transition duration
 }
 // Note: The previous 'displayResult(result)' and 'calculateResult()' functions

@@ -136,3 +136,34 @@ h1 {
     background-color: #ec971f; /* Darker orange on hover */
     transform: scale(1.05); /* Specific hover transform */
 }
+
+#community-link-container {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Light separator for dark bg */
+    width: 80%; /* Or 100% if it should span full container width, adjust as needed */
+    max-width: 400px; /* Max width for the link button area */
+    text-align: center; /* Center the link button if it's inline-block */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#community-link {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 25px; /* Adjusted padding */
+    color: #FFFFFF;
+    background-color: #ff6b6b; /* Coral/reddish pink */
+    border-radius: 25px; /* Pill shape */
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#community-link:hover {
+    background-color: #ee5253; /* Darker coral/reddish pink */
+    transform: scale(1.05);
+    color: #FFFFFF; /* Ensure text color remains white on hover */
+}
