@@ -277,3 +277,19 @@ h1 {
     transform: translateY(-2px); /* Subtle lift effect */
     color: #FFFFFF;
 }
+
+/* Styles for Disqus Comments Section Container */
+#disqus_thread {
+    margin-top: 40px; /* Increased margin for better separation */
+    padding-top: 30px; /* Increased padding */
+    border-top: 1px solid rgba(255, 255, 255, 0.2); /* Using a color consistent with other borders */
+    padding: 20px; /* Uniform padding */
+    background-color: rgba(0, 0, 0, 0.05); /* Subtle background as used in mbti-content-placeholder */
+    border-radius: 8px; /* Consistent border radius */
+    margin-bottom: 30px; /* Space before the "Back to test" button */
+    width: 100%; /* Ensure it takes full width of the container */
+    max-width: 600px; /* Align with the main container width */
+    box-sizing: border-box; /* Include padding in width/height */
+    margin-left: auto; /* Center the Disqus container */
+    margin-right: auto; /* Center the Disqus container */
+}
