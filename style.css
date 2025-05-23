@@ -1,62 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@400;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 400;
     text-align: center;
-    margin: 20px;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    margin: 0; /* Adjusted margin for full-page gradient */
+    padding: 20px; /* Added padding to body instead of individual margins */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #F0F0F0; /* Light text color for body */
+    min-height: 100vh; /* Ensure gradient covers full viewport height */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 #welcome-screen,
 #question-screen,
 #result-screen {
-    padding: 20px;
+    padding: 40px; /* Increased padding */
     margin: 20px auto;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+    border-radius: 20px; /* Increased border-radius */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
     max-width: 600px;
+    color: #333333; /* Dark text color for content inside containers */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    display: flex; /* Using flex for centering content */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#welcome-screen {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 #question-screen,
 #result-screen {
-    display: none;
+    display: none; /* Initially hidden */
+    opacity: 0;
+    transform: translateY(20px);
 }
+
+.screen-active { /* Class to make screens visible with animation */
+    display: flex !important; /* Override display:none */
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 button {
     padding: 10px 20px;
     margin: 10px;
     background-color: #007bff;
-    color: white;
+    color: #FFFFFF; /* Default white text for buttons */
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 16px; /* Equivalent to 1em for base button size */
+    font-family: 'Noto Sans KR', sans-serif; /* Ensure buttons use Noto Sans KR */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Added for all buttons */
+    border: none; /* Ensure all buttons have no border by default */
+    cursor: pointer; /* Ensure cursor is pointer for all buttons */
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Default hover, can be overridden */
+    transform: scale(1.05); /* Default hover transform */
+}
+
+#options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between option buttons */
+    width: 100%; /* Use full width of parent */
 }
 
 #options-container button {
-    display: block;
-    width: calc(100% - 40px); /* Account for padding */
-    margin: 10px auto;
+    /* display: block; */ /* No longer needed due to flex container */
+    /* width: calc(100% - 40px); */ /* Flex will handle width, or set to 100% if needed */
+    width: 100%; /* Make buttons take full width of flex container */
+    /* margin: 10px auto; */ /* Gap handles spacing */
+    padding: 12px 24px; /* Increased padding */
+    background-color: #5cb85c; /* A distinct, friendly green */
+    color: #FFFFFF; /* White text for these specific buttons */
+    font-weight: 700; /* Bolder text for options */
+    border-radius: 8px; /* Softer radius */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-size: 1em; /* Standard font size */
+}
+
+#options-container button:hover {
+    background-color: #4cae4c; /* Darker green on hover */
+    transform: scale(1.05); /* Specific hover transform if needed, or rely on general button:hover */
 }
 
 #question-text {
     font-size: 1.2em;
-    margin-bottom: 20px;
+    margin-bottom: 30px; /* Increased margin */
     line-height: 1.6;
+    color: #333333; /* Ensure dark text on light container background */
+    font-weight: 700; /* Make question text bolder */
 }
 
 #result-text {
-    font-size: 1.2em;
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 1.5em; /* Slightly larger for emphasis */
     margin-bottom: 20px;
     line-height: 1.6;
-    font-weight: bold;
+    font-weight: normal; /* Do Hyeon is naturally bold, so normal might be sufficient or use its default */
+    color: #333333; /* Ensure dark text on light container background */
 }
 
 h1 {
-    color: #333;
+    font-family: 'Do Hyeon', sans-serif;
+    color: #FFFFFF; /* Light color for h1, as it's on the gradient background */
+    font-weight: normal; /* Do Hyeon is naturally bold */
+}
+
+/* Specific styling for the start button if it's on the welcome screen directly on the gradient */
+#welcome-screen h1 {
+    font-family: 'Do Hyeon', sans-serif; /* Ensure this h1 also uses Do Hyeon */
+    color: #333333; /* Override if h1 is inside welcome-screen */
+    font-weight: normal; /* Do Hyeon is naturally bold */
+    margin-bottom: 30px; /* Added margin for spacing */
+}
+#start-btn {
+    background-color: #f0ad4e; /* A welcoming orange */
+    color: #FFFFFF;
+    padding: 15px 30px; /* Increased padding */
+    border-radius: 25px; /* Pill shape */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    font-size: 1.1em; /* Slightly larger font */
+}
+#start-btn:hover {
+    background-color: #ec971f; /* Darker orange on hover */
+    transform: scale(1.05); /* Specific hover transform */
 }

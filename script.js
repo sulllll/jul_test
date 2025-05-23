@@ -108,9 +108,24 @@ startBtn.addEventListener('click', startTest);
 function startTest() {
     currentQuestionIndex = 0;
     scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
-    welcomeScreen.style.display = 'none';
-    questionScreen.style.display = 'block';
-    displayQuestion();
+
+    // Animate out welcome screen
+    welcomeScreen.style.opacity = '0';
+    welcomeScreen.style.transform = 'translateY(20px)';
+
+    setTimeout(() => {
+        welcomeScreen.style.display = 'none';
+
+        // Prepare question screen for animation
+        questionScreen.style.display = 'flex'; // Changed from 'block' to 'flex'
+        // Force reflow to ensure transition is applied
+        void questionScreen.offsetHeight; // Using void for clarity on non-assignment
+
+        // Animate in question screen
+        questionScreen.style.opacity = '1';
+        questionScreen.style.transform = 'translateY(0)';
+        displayQuestion();
+    }, 500); // Corresponds to CSS transition duration
 }
 
 function displayQuestion() {
@@ -127,7 +142,8 @@ function displayQuestion() {
             optionsContainer.appendChild(button);
         });
     } else {
-        calculateResult();
+        // All questions answered, proceed to calculate and show result
+        calculateAndShowResult();
     }
 }
 
@@ -137,17 +153,35 @@ function selectAnswer(type) {
     displayQuestion();
 }
 
-function calculateResult() {
+// This function will handle the transition from question screen to result screen
+function calculateAndShowResult() {
+    // Calculate MBTI result string
     let mbtiResult = '';
     mbtiResult += scores.E >= scores.I ? 'E' : 'I';
     mbtiResult += scores.S >= scores.N ? 'S' : 'N';
     mbtiResult += scores.T >= scores.F ? 'T' : 'F';
     mbtiResult += scores.J >= scores.P ? 'P' : 'J';
-    displayResult(mbtiResult);
-}
 
-function displayResult(result) {
-    questionScreen.style.display = 'none';
-    resultScreen.style.display = 'block';
-    resultText.textContent = `당신의 MBTI 유형은 ${result} 입니다.`;
+    // Animate out question screen
+    questionScreen.style.opacity = '0';
+    questionScreen.style.transform = 'translateY(20px)';
+
+    setTimeout(() => {
+        questionScreen.style.display = 'none';
+
+        // Prepare result screen for animation
+        resultScreen.style.display = 'flex';
+        // Force reflow to ensure transition is applied correctly
+        void resultScreen.offsetHeight;
+
+        // Animate in result screen
+        resultScreen.style.opacity = '1';
+        resultScreen.style.transform = 'translateY(0)';
+        resultText.textContent = `당신의 MBTI 유형은 ${result} 입니다.`;
+    }, 500); // Corresponds to CSS transition duration
 }
+// Note: The previous 'displayResult(result)' and 'calculateResult()' functions
+// have been consolidated into 'calculateAndShowResult()' for a cleaner flow
+// as per the simplified approach.
+// The multiple definitions and re-definitions like calculateResult_revised,
+// showResultScreen, updateResultText have been removed.
