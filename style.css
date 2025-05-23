@@ -234,3 +234,46 @@ h1 {
     justify-content: center;
     This should be fine for consistency.
 */
+
+/* Styles for Direct MBTI Links Section on Welcome Screen */
+.direct-links-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 10px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.1); /* Subtle background to group links */
+    border-radius: 10px;
+    margin-top: 40px; /* Ensure space from start button */
+    width: 100%; /* Ensure it takes available width in its parent */
+    max-width: 560px; /* Consistent with other containers, but adjust if needed */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.direct-links-container h2 {
+    font-family: 'Do Hyeon', sans-serif;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    text-align: center;
+    grid-column: 1 / -1; /* Make heading span all columns */
+}
+
+.direct-mbti-link {
+    display: block;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 8px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.9em;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.direct-mbti-link:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px); /* Subtle lift effect */
+    color: #FFFFFF;
+}
