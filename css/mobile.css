@@ -1,0 +1,79 @@
+/* css/mobile.css - Initial Mobile Styles */
+
+body {
+    /* Potentially increase base font size for mobile readability */
+    /* font-size: 17px; */ 
+}
+
+.container, 
+#welcome-screen, 
+#question-screen, 
+#result-screen,
+.mbti-info-page .container /* Assuming mbti info pages also use .container */
+{
+    width: 90%; /* Use more screen width */
+    padding-left: 5%; /* Adjust padding for smaller screens */
+    padding-right: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: none; /* Override any max-width from base.css for mobile full-width feel */
+}
+
+#start-btn, 
+#options-container button, 
+.btn-back,
+#community-link {
+    padding: 15px 20px; /* Larger padding for easier touch */
+    font-size: 1.1em; /* Slightly larger font for buttons */
+}
+
+/* MBTI Direct Links on Main Page for Mobile */
+.direct-links-container {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* 2 or 3 columns based on screen */
+    gap: 12px;
+}
+
+/* Further mobile-specific styles can be added, e.g., for question/options layout */
+#options-container {
+    flex-direction: column; /* Ensure options are always stacked vertically */
+}
+
+/* Refining styles for index.html on Mobile */
+.direct-links-container h2 { /* MBTI 유형별 정보 바로가기 제목 */
+    font-size: 1.1em; /* Adjusted from 1.3em for smaller screens if too large */
+    margin-bottom: 15px; /* Adjusted from 20px */
+}
+
+.direct-mbti-link {
+    padding: 10px 5px; /* Slightly adjust padding for mobile */
+    font-size: 0.85em; /* Adjust font size for link text */
+    min-height: 30px; /* Ensure a minimum touchable height */
+    line-height: 1.4;
+}
+
+/* Refining styles for mbti-info-page (e.g., pages/infj.html) on Mobile */
+/* Assuming .mbti-info-page is a class added to the body or main container of these pages, 
+   or we target .container within a specific path, but for now, let's use general selectors 
+   that might apply if structure is consistent or rely on existing .container adjustments. */
+
+.result-screen h1 { /* This class is used on mbti_info_pages for the main heading */
+    font-size: 1.6em; /* Adjust heading font size for mobile */
+    margin-bottom: 15px;
+}
+
+.mbti-content-placeholder p {
+    font-size: 0.95em; /* Adjust paragraph font size for mobile */
+    line-height: 1.7; /* Improve readability */
+}
+
+#disqus_thread { /* Disqus container on mobile */
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 15px;
+}
+
+/* Ensure .btn-back on mobile is easily tappable */
+.btn-back {
+    padding: 14px 18px;
+    font-size: 1em;
+}
